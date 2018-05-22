@@ -67,6 +67,10 @@ public class RetirementController implements Initializable {
 		// decmial
 		hmTextFieldRegEx.put(txtYearsToWork, "\\d*?");
 		hmTextFieldRegEx.put(txtAnnualReturnWorking, "\\d*(\\.\\d*)?");
+		hmTextFieldRegEx.put(txtYearsRetired, "\\d*?");
+		hmTextFieldRegEx.put(txtAnnualReturnRetired, "\\d*(\\.\\d*)?");
+		hmTextFieldRegEx.put(txtRequiredIncome, "\\d*?");
+		hmTextFieldRegEx.put(txtMonthlySSI, "\\d*(\\.\\d*)?");
 
 		// Check out these pages (how to validate controls):
 		// https://stackoverflow.com/questions/30935279/javafx-input-validation-textfield
@@ -118,18 +122,44 @@ public class RetirementController implements Initializable {
 
 		// TODO: Clear, enable the rest of the input controls. Hint! You already have a
 		// HashMap of all the input controls....!!!!
+		Iterator itr = hmTextFieldRegEx.entrySet().iterator();
+		while (itr.hasNext()) {
+			Map.Entry pair = (Map.Entry) itr.next();
+			TextField txtField = (TextField) pair.getKey();
+			txtField.clear();
+			txtField.setDisable(false);
+		}
 	}
 
 	@FXML
 	public void btnCalculate() {
+		String n = txtYearsToWork.getText();
+		int nvalue = Integer.parseInt(n);
+		String r = txtAnnualReturnWorking.getText();
+		double rvalue = Double.parseDouble(r);
+		String y = txtYearsRetired.getText();
+		int yvalue = Integer.parseInt(y);
+		String a = txtAnnualReturnRetired.getText();
+		double avalue = Double.parseDouble(a);
+		String i = txtRequiredIncome.getText();
+		int ivalue = Integer.parseInt(i);
+		String s = txtMonthlySSI.getText();
+		int svalue = Integer.parseInt(s);
 
+		Retirment rtr1 = new Retirment(nvalue, rvalue, yvalue, avalue, ivalue, svalue);
 		System.out.println("calculating");
 
 		txtSaveEachMonth.setDisable(false);
 		txtWhatYouNeedToSave.setDisable(false);
 
+	//	public Retirement(int iYearsToWork, double dAnnualReturnWorking, int iYearsRetired, double dAnnualReturnRetired,
+		//		double dRequiredIncome, double dMonthlySSI)
+	
+	
 		// TODO: Calculate txtWhatYouNeedToSave value...
 		// TODO: Then calculate txtSaveEachMonth, using amount from txtWhatYouNeedToSave
 		// as input
+		txtWhatYouNeedToSave.setText("" + r1.TotalAmountToSave());
+		txtSaveEachMonth.setText("" + r1.MonthlySavings());
 	}
 }

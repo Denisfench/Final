@@ -1,0 +1,20 @@
+.label {
+    -fx-font-family: "Helvetica", Helvetica, sans-serif;
+    -fx-font-size: 12pt;
+}
+.button {
+	-fx-font-family: "Helvetica", Helvetica, sans-serif;
+    -fx-font-size: 12pt;
+    -fx-background-color: #4169e1;
+    -fx-border-radius: 8px;
+    -fx-transition-duration: 0.6s;
+}
+.button:hover {
+	-fx-background-color: #00ffff;
+}
+.root {
+    -fx-background-color: lightskyblue;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 8pt;
+}
